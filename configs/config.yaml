@@ -1,0 +1,30 @@
+database:
+  type: "postgresql"
+  host: "localhost"
+  port: 5432
+  username: "your_username"
+  password: "your_password"
+  database_name: "data_pipeline_db"
+
+aws:
+  access_key_id: "your_access_key_id"
+  secret_access_key: "your_secret_access_key"
+  s3_bucket: "your_s3_bucket_name"
+
+azure:
+  storage_account_name: "your_storage_account_name"
+  storage_account_key: "your_storage_account_key"
+  blob_container: "your_blob_container_name"
+
+scraping:
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+  max_retries: 5
+  timeout: 10
+
+etl:
+  batch_size: 1000
+  max_memory: "4g"
+
+logging:
+  level: "INFO"
+  log_file: "logs/data_pipeline.log"

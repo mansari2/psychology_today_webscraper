@@ -1,0 +1,15 @@
+BeautifulSoup4
+Scrapy
+Selenium
+pandas
+pyspark
+nltk
+spacy
+delta-spark
+matplotlib
+seaborn
+apache-airflow
+databricks-api
+pyyaml
+jupyter
+requests
