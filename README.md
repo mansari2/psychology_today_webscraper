@@ -1,4 +1,4 @@
-# Data Pipeline Project
+# Psychology Today Webscraper
 
 This project aims to build a scalable data pipeline to scrape, process, and analyze data from websites listing psychologists and therapists. The pipeline integrates multiple tools and frameworks, leveraging Spark/Databricks for ETL processing and analytics.
 
