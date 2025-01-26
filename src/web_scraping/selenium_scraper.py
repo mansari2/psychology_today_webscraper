@@ -28,24 +28,24 @@ class TherapistScraper:
         data = []
         while True:
             # Locate therapist cards on the current page
-            elements = self.driver.find_elements(By.CLASS_NAME, 'profile-listing')
+            elements = self.driver.find_elements(By.CLASS_NAME, 'results-row')  # Main container for each therapist
 
             for element in elements:
                 try:
-                    name = element.find_element(By.CLASS_NAME, 'profile-name').text
-                    location = element.find_element(By.CLASS_NAME, 'location').text
-                    specialty = element.find_element(By.CLASS_NAME, 'profile-specialties').text
-                    rating = self.extract_rating(element)
-                    reviews = self.extract_reviews(element)
-                    contact_info = element.find_element(By.CLASS_NAME, 'contact-info').text
+                    # Extract individual data points
+                    name = element.find_element(By.CLASS_NAME, 'profile-title').text
+                    location = element.find_element(By.CLASS_NAME, 'profile-location').text
+
+                    # Phone number may need to be handled as an optional field
+                    try:
+                        phone = element.find_element(By.CLASS_NAME, 'profile-phone').text
+                    except:
+                        phone = "Not listed"
 
                     data.append({
                         'name': name,
                         'location': location,
-                        'specialty': specialty,
-                        'rating': rating,
-                        'reviews': reviews,
-                        'contact_info': contact_info
+                        'phone': phone
                     })
                 except Exception as e:
                     print(f"Error extracting data for a therapist: {e}")
@@ -53,7 +53,7 @@ class TherapistScraper:
 
             # Check for the 'Next' button and navigate
             try:
-                next_button = self.driver.find_element(By.CLASS_NAME, 'next-page')
+                next_button = self.driver.find_element(By.CLASS_NAME, 'next')  # Update this if the "Next" button has a different class name
                 next_button.click()
                 time.sleep(3)  # Wait for the next page to load
             except:
@@ -62,18 +62,6 @@ class TherapistScraper:
 
         self.driver.quit()
         return data
-
-    def extract_rating(self, element):
-        try:
-            return element.find_element(By.CLASS_NAME, 'rating').text
-        except:
-            return None
-
-    def extract_reviews(self, element):
-        try:
-            return element.find_element(By.CLASS_NAME, 'review-count').text
-        except:
-            return None
 
     def save_data(self, data, filename='therapists_data.json'):
         output_dir = 'data/raw'
@@ -86,7 +74,7 @@ class TherapistScraper:
 
 if __name__ == "__main__":
     url = 'https://www.psychologytoday.com/us/therapists/tennessee'  # Target website
-    driver_path = 'path/to/chromedriver'  # Update with the actual path to your chromedriver
+    driver_path = '/usr/local/bin/chromedriver'  # Update with the actual path to your chromedriver
 
     scraper = TherapistScraper(url, driver_path)
     scraped_data = scraper.scrape()
