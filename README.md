@@ -1,6 +1,18 @@
 # Psychology Today Webscraper
 
-This project aims to build a scalable data pipeline to scrape, process, and analyze data from websites listing psychologists and therapists. The pipeline integrates multiple tools and frameworks, leveraging Spark/Databricks for ETL processing and analytics.
+This project aims to build a scalable data pipeline to scrape, process, and analyze data from websites listing psychologists and therapists. The pipeline integrates multiple tools and frameworks, leveraging Spark/Databricks for ETL processing and analytics. End goal is to create groupings of therapists using the following:
+
+1. Keyword Extraction and Matching
+   - Use Natural Language Processing (NLP) techniques to extract key terms from therapist descriptions.
+   - Group therapists based on predefined categories such as:
+      - Target populations: "Black individuals," "LGBTQ+," "adolescents."
+      - Specializations: "trauma," "grief," "anxiety."
+      - Therapeutic approaches: "CBT," "mindfulness," "play therapy."
+   - Tools: Libraries like SpaCy or NLTK can help extract and match keywords from text.
+     
+3. Sentiment Analysis 
+   - Assess the tone or emotional alignment of the therapists’ descriptions (e.g., warm and welcoming, energetic).
+   - Sentiment analysis might not directly address grouping by needs, but it could provide insights into how the therapist communicates their services.
 
 ## Project Structure
 
