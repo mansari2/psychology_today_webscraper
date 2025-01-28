@@ -28,10 +28,9 @@ def standardize_schema(df):
     return df.select(
         col("name").alias("Name"),
         col("location").alias("Location"),
-        col("rating").alias("Rating"),
-        col("reviews").alias("Reviews"),
-        col("specialty").alias("Specialty"),
-        col("contact_info").alias("Contact Info")
+        col("profile_url").alias("Profile URL"),
+        col("statement").alias("Statement"),
+        col("phone").alias("Phone")
     )
 
 def save_to_data_lake(df, output_path):
@@ -49,6 +48,6 @@ def main(raw_data_path, output_data_path):
     spark.stop()
 
 if __name__ == "__main__":
-    raw_data_path = os.path.join("data", "raw", "data.json")  # Example path
-    output_data_path = os.path.join("data", "processed", "data.parquet")  # Example path
+    raw_data_path = os.path.join("data", "raw", "therapists_basic_data.json")  # Example path
+    output_data_path = os.path.join("data", "processed", "therapists_data.parquet")  # Example path
     main(raw_data_path, output_data_path)
